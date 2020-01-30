@@ -33,6 +33,9 @@ target 'WowzaLiveStreaming' do
   pod 'DoubleConversion', :podspec => '../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec'
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
+  pod 'libbambuser-ios', '0.9.24'
+
+  pod 'react-native-bambuser-player', :path => '../node_modules/react-native-bambuser-player'
 
   target 'WowzaLiveStreamingTests' do
     inherit! :search_paths

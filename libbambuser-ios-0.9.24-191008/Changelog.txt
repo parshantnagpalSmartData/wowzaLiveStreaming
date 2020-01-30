@@ -1,0 +1,291 @@
+0.9.24
+- Changed the player's default videoScaleMode to VideoScaleAspectFill
+- Added possibility to change audio quality during broadcast
+- Fixed issues in the example broadcast apps (with the upload UI and
+  FileUpload class) when run on iOS 13
+- Minor bug fixes for the player
+- Finetuned the video quality in the broadcaster
+- Improved picking a suitable initial quality in the broadcaster
+
+0.9.23
+- Added a property cameraPosition on BambuserView, allowing requesting
+  the front camera before the broadcaster starts up
+- Improved picture quality when broadcasting on high speed networks
+- Improved sync between audio and video in the broadcast stream
+- Changed the default audioQualityPreset to kAudioHigh in the broadcaster
+- Minor bug fixes for BambuserPlayer
+
+0.9.22
+- Added new states to BambuserPlayer, kBambuserPlayerStateError and
+  kBambuserPlayerStateIdle, and a property named error
+- Deprecated the BambuserPlayer callback videoLoadFail (use
+  playbackStatusChanged instead)
+- Upgraded the bundled swift examples to swift 4
+- Fixed issues with linking both libbambuser.a and libbambuserplayer.a into
+  the same binary (in some setups)
+- Added support for getting the current playback position also for live
+  broadcasts in the playbackPosition property in BambuserPlayer
+- Many improvements and bug fixes for BambuserPlayer
+
+0.9.21
+- The built-in stock settings view for the broadcaster has been removed.
+- Added a property resolution to BambuserPlayer, to allow resizing players
+  according to the broadcast's aspect ratio
+- Removed the deprecated privateMode property
+- Improved BambuserPlayer adaptive buffering logic for smoother playback and
+  more consistent latency, particularly on slow networks.
+- BroadcastPlayer resets end-to-end latency measurement if broadcast source is
+  changed to a source that doesn't support measurements
+
+0.9.20
+- Clarified documentation for the player, made state handling stricter.
+  The playVideo: method can now only be called once per player object,
+  and the pauseVideo method has no effect on broadcasts that can't be
+  paused.
+- Added a new state to the player, kBambuserPlayerStateBuffering, and
+  a new callback playbackStatusChanged, deprecating the older playbackStarted,
+  playbackPaused and playbackStopped.
+- Added real time metadata from BambuserView to support end-to-end latency
+  measurements.
+- Added endToEndLatency in BambuserPlayer.
+
+0.9.19
+- Deprecated the privateMode property
+- Removed old deprecated getter methods that were renamed and deprecated
+  in 0.9.6 in November 2016
+- Removed the deprecated setTitle method that was renamed to setBroadcastTitle
+  in 0.9.6 in November 2016
+- Added support for ultra-low latency HLS in libbambuserplayer. This format
+  provides Bambuser's signature ultra-low latency, and scales up to an unlimited
+  number of viewers cost-efficiently.
+
+0.9.18
+- Fixed linking both broadcaster and player into the same binary
+  (broken in 0.9.17)
+- Bumped the iOS deployment target to iOS 8.0
+- Added a new init method to the BambuserView class, initWithPreparePreset:,
+  and a separate method startCapture, that together allow setting capture
+  parameters before actually starting the capture, reducing the startup delay
+  if setting certain parameter combinations. The old init method is now
+  deprecated.
+- Updated the FileUploader class in the testclient, upgraded to use
+  NSURLSession in the Objective C version as well.
+
+0.9.17
+- Added support for mixing talkback audio into the broadcast audio stream
+
+0.9.16
+- Fix crashes when changing resolution in live streams on iOS 11
+
+0.9.15
+- Fixed a few issues (hangs/leaks) that could be triggered by deallocating
+  BambuserPlayer objects very soon after they had been constructed
+- Added a new enum value kBambuserErrorServerRejected in BambuserError
+- Better handling of broadcasting attempts that fail in the connecting
+  phase
+- Updated examples for Xcode 9
+
+0.9.14
+- Removed the armv7s architecture from the prebuilt libraries, reducing their
+  size; armv7s is no longer enabled by default since Xcode 6
+- Added a property videoScaleMode to BambuserPlayer
+
+0.9.13
+- Authentication using username and password which was previously deprecated
+  is now removed.
+- Removed video quality from settings view, since kSessionPresetAuto is
+  the only option.
+- Fixed an issue with broadcasts freezing after broadcasting for a very
+  long time
+- Fixed requesting specific framerates on some devices; previously the
+  setting failed to have an effect on some devices if the minimum framerate
+  wasn't specified
+- Updated kSessionPresetAuto to support resolutions up to 1280x720 on modern
+  devices. Set bambuserView.maxBroadcastDimension = 960 to keep the previous
+  behaviour of limiting the live stream to 960x540.
+
+0.9.12
+- Improve reliability of starting broadcasting at a suitable resolution
+- Lowered timeouts in the testclient FileUploader example
+
+0.9.11
+- Start broadcast with resolution and bitrate suitable for current available
+  link speed
+- Fixed an issue introduced in 0.9.10 where Siri and Apple Music could not be
+  used while BambuserView is active but not broadcasting
+- testclient-swift and testplayer-swift updated to Swift 3.0
+
+0.9.10
+- Assorted minor fixes in libbambuserplayer
+- Improved timeshift playback behaviour for newly created broadcasts
+- Better handling of capture session interruptions in the broadcaster,
+  including working around platform bugs where unplugging a microphone
+  could freeze the broadcast on some device/iOS version combinations
+- Added a new libbambuserplayer delegate callback playbackCompleted
+- Avoid overriding the application global audio session category. Previously
+  libbambuserplayer would sometimes set the category (depending on the
+  playback format used) - now libbambuserplayer does not set the category
+  any longer, leaving this up to the application to decide.
+
+0.9.9
+- Fixed a case where BambuserView would remain blank, in certain UI layout
+  hierarchies (e.g. UINavigationViewController)
+
+0.9.8
+- Added volume property to BambuserPlayer to control playback volume. This
+  property is available on iOS 8.0 and newer.
+- Fixed the localFilename property in BambuserView, which was broken before
+- Fixed a crash that could occur while removing BambuserView or BambuserPlayer,
+  present only in 0.9.7
+- Added timeshift mode for seeking in live broadcasts.
+
+0.9.7
+- Fixed handling of kBambuserErrorNoFreeSpace, broken since 0.8.0
+- Added delegate callbacks exposing the current and total number of viewers
+- Started optionally using the AVKit framework in the player library
+
+0.9.6
+- Renamed the getter methods of properties. If you are using them as a property
+  (in Objective C or Swift 2.x) no change is necessary, but if you are calling
+  the getters directly, you want to change the calling code to either use them
+  as properties, or use the new getter name. If using them from Swift 3, this
+  requires updating your code, to access them via their canonical names.
+- Converted the Objective C example code to use ARC
+- Removed static video quality presets. kSessionPresetAuto in combination
+  with maxBroadcastDimension is now the only way to limit video quality.
+- Updated testclient (Objective C) to use Photos framework on iOS >= 8.0
+- Replace AlAssetsLibrary with Photos framework in testclient-swift
+- Updates and refactorings to the FileUploader classes, upgraded to use
+  NSURLSession in the Swift version
+
+0.9.5
+- Fixed talkback playback on iOS 10
+
+0.9.4
+- Added support for fully encrypted broadcasting. This is enabled/disabled
+  depending on server configuration.
+- Update the example project for Xcode 8
+- Allow requesting BambuserPlayer to only play a broadcast if it is in the
+  expected state (live/archived). By default, BambuserPlayer plays broadcasts
+  in any state.
+- Added methods for optional uplink speed testing, which can be used to decide
+  whether the end user should be allowed to broadcast or not on the current
+  network.
+
+0.9.3
+- Added a method for grabbing an UIImage snapshot from the camera stream
+- Fixed using the broadcasting library in an application which is portrait-only
+- Added a method for setting a specific aspect ratio to broadcast, resulting
+  in a cropped camera picture
+- Fixed iOS 10 compatibility for the FileUploader example classes
+- Prefetch data for applicationId, reducing the time to start broadcasting
+
+0.9.2
+- Fixed issues with duplicated classes if linking both libbambuser.a and
+  libbambuserplayer.a into the same binary with -ObjC or -all_load
+- Fixed occasional crashes on some devices when removing the broadcasting
+  view
+- Call playbackPaused instead of playbackStopped, when non-live videos end,
+  to easier be able to continue playback
+
+0.9.1
+- Moved the documentation into header comments, providing autogenerated
+  HTML documentation (see doc.html)
+- Added a swift version of the testplayer example project
+- Changed to use named enums instead of plain ints in the BambuserView and
+  BambuserViewDelegate APIs, improving discoverability and IDE autocompletion.
+  This breaks source compatibility slightly, requiring updates to the
+  bambuserError:message: and talkbackStateChanged: callbacks in calling code.
+- Added player API for seeking in archived videos
+
+0.9.0
+- Added applicationId property, which can be used to authenticate your broadcasts,
+  deprecating the old username/password properties
+- Added broadcastIdReceived: callback, to give the unique identifier given to the broadcast
+- Added errorcode kBambuserErrorBroadcastTicketFailed
+- Added a new, separate library, libbambuserplayer, for playback of video streams
+
+0.8.7
+- Updated kSessionPresetAuto to support resolutions up to 960x540 on 64-bit devices.
+- Added method setMaxBroadcastDimension: to limit max resolution of auto presets
+- Disable use of VideoToolbox again after finding even more issues relating to it
+
+0.8.6
+- Fix a few rare crashes
+- Fix minor bugs in the example app
+- Write the local copy as 720p on modern devices, when using the auto preset
+- Re-enable VideoToolbox for encoding since iOS 9.0, where the earlier
+  bugs reported to Apple should be fixed
+
+0.8.5
+- Fix a few rare crashes when stopping broadcasting
+
+0.8.4
+- Readd the swift version of the testclient, upgraded for swift 2.0
+- Fix warnings present in 0.8.3 when using the prebuilt library on
+  machines other than the one that exported the library
+
+0.8.3
+- Bumped the iOS deployment target to iOS 6.0 (required when bitcode
+  is enabled)
+- Fix stuttering audio/video for some users on iPhone 6S
+- Removed the swift version of the testclient since it is currently
+  incompatible with Xcode 7
+
+0.8.2
+- Disable new (VideoToolbox) encoders (used since 0.8.0) since they
+  can crash occasionally, until Apple manages to fix the issue
+
+0.8.1
+- Fixed a crash in 0.8.0 when manually terminating talkback sessions
+- Fixed periodic clicks caused by automatic gain control on certain
+  devices in 0.8.0
+- Allow setting the capture frame rate
+
+0.8.0
+- Added initWithPreset, deprecated the plain init method
+- Removed a dependency on libstdc++, letting the calling application use
+  whichever C++ library they want (instead of requiring using the same
+  version as used in the libbambuser build). This fixes building apps
+  with libbambuser, with a minimum deployment target of >= 7.0.
+- Added properties zoom and maxZoom to BambuserView
+- Remember the torch state when switching cameras
+- Added support for broadcasting in other orientations than the default
+  (i.e. support for flipped landscape, and for portrait modes)
+- Made the headers swift compatible, added a swift version of the
+  testclient project
+- Fixed a bug where the picture could get a green edge on iPhone 6,
+  when using autoresolution (when the lib chose to use very low resolutions)
+
+0.7.0
+- Restructured the internal layout logic slightly; make sure to retest
+  the layout of client applications properly
+- Added property customData
+- Added example class and UI for uploading videos and photos. Note that this is restricted to privileged user accounts only.
+
+0.6.0
+- Replaced use of AVCaptureSession constants with libbambuser-specific ones for setting video quality preset.
+- Added support for talkback
+
+0.5.0
+- Added setting kSaveLocallyOption
+- Added property saveLocally
+- Added property localFilename
+- Added method recordingComplete: to BambuserView delegate protocol
+- Added example code for exporting local recording to camera roll to testclient project
+
+0.4.0
+- Added video quality preset 'auto'
+- Added error code kBambuserErrorPrivacy
+- Including versions of the library built for arm64 and x86_64 as well
+
+0.3.7
+- Added health property to BambuserView
+- Added method healthUpdated: to BambuserView delegate protocol
+
+0.3.4
+- Added error code kBambuserErrorAlreadyBroadcasting
+
+0.3.2
+- Added hasFrontCamera property for querying if a device has a front camera
+- Added method hideSettingsView to BambuserView delegate protocol

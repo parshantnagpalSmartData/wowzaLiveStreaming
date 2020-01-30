@@ -5424,6 +5424,16 @@ react-is@^16.12.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.9.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
+react-native-bambuser-broadcaster@^0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/react-native-bambuser-broadcaster/-/react-native-bambuser-broadcaster-0.0.12.tgz#44e918ac5a169c020aabce131620ba34015b0a9d"
+  integrity sha512-QntchhkNknXPn3Viro5wupskLWDEsAZNjaDI2O4RpjPmNQI76PtOrU+s6WZHUV3s9iI4nmJCV+Lfl1Kcpz8G+w==
+
+react-native-bambuser-player@^0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/react-native-bambuser-player/-/react-native-bambuser-player-0.0.14.tgz#6ecc3539002caadfec87f9f2aea42612bd3d19f7"
+  integrity sha512-/BIYeDvBXa+k5U4AqRTSNqhReA20O3A7sFOK8ZB7lS5Z7NNcxBxzC5sYr2m49oNxKEOAbAHjVxF5RNMl1RhrGA==
+
 react-native@0.61.5:
   version "0.61.5"
   resolved "https://registry.yarnpkg.com/react-native/-/react-native-0.61.5.tgz#6e21acb56cbd75a3baeb1f70201a66f42600bba8"
