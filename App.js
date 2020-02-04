@@ -26,7 +26,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import RNBambuserBroadcaster from 'react-native-bambuser-broadcaster';
 import RNBambuserPlayer from 'react-native-bambuser-player';
-console.log("RNBambuserPlayerRNBambuserPlayer",RNBambuserPlayer)
+// console.log("RNBambuserPlayerRNBambuserPlayer",RNBambuserPlayer)
 
 
 // console.log("RNBambuserBroadcasterRNBambuserBroadcaster",RNBambuserBroadcaster)
@@ -45,9 +45,24 @@ class App extends React.Component {
       <Button onPress={()=>{ this.myBroadcasterRef.stopBroadcast();
       this.myBroadcasterRef.endTalkback();
       } } title={"Stop"}/>
-      {/* <RNBambuserPlayer  
-     resourceUri={"https://cdn.bambuser.net/groups/87246/broadcasts?by_authors=&title_contains=&has_any_tags=&has_all_tags=&da_id=15c7b7ad-bc4f-87d4-cea1-f2a7d4f3fd76&da_timestamp=1580368786&da_signature_method=HMAC-SHA256&da_ttl=0&da_static=1&da_signature=a9b48255e467a556e3fefbd81515f0dbd04504bccde6e38c8f16d82deee82663"} 
-      style={{height: 200,backgroundColor : "red"}} applicationId={"L5OLXCmxu3FrNOzLGpyb7w"} /> */}
+         <Button onPress={()=>{ this.myBroadcasterRef.stopBroadcast();
+ this.RNBambuserPlayer.play();
+
+      } } title={"play"}/>
+      <RNBambuserPlayer  
+      ref={ref => {this.RNBambuserPlayer = ref; }} 
+      videoScaleMode={RNBambuserPlayer.VIDEO_SCALE_MODE.ASPECT_FILL}
+     resourceUri={"https://cdn.bambuser.net/broadcasts/ffb8d766-9dca-44a2-b744-e022d771aefe?da_signature_method=HMAC-SHA256&da_id=9e1b1e83-657d-7c83-b8e7-0b782ac9543a&da_timestamp=1580801783&da_static=1&da_ttl=0&da_signature=55f582eef740ca5aa704f8a82d01498b2e31cffe1501741d44bfdcbb2ed34d5c"} 
+      style={{height: 200,width: 500,backgroundColor : "red"}} applicationId={"L5OLXCmxu3FrNOzLGpyb7w"} 
+
+      onReady={()=>{
+        // alert("ready")
+      }}
+      onLoading={()=>{alert("loading")}}
+      onPlaying={()=>{alert("32123132")}}
+      onStopped={()=>{alert("32123132")}}
+      onPlaybackError={()=>{alert("errrorororo")}}
+      />
         {/* <StatusBar barStyle="dark-content" />
         <SafeAreaView>
         <View style={{height : 100, backgroundColor : "red"}}>

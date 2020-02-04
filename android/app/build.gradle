@@ -179,7 +179,8 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-bambuser-player')
+//    implementation project(':react-native-bambuser-player')
+    implementation project(':react-native-bambuser-broadcaster')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
 
