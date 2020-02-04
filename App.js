@@ -40,7 +40,7 @@ class App extends React.Component {
     return (
       <View style={{height: 1000,backgroundColor : "red"}}>
      
-      <RNBambuserBroadcaster ref={ref => {this.myBroadcasterRef = ref; }} style={{height: 600,backgroundColor : "red"}} applicationId={"L5OLXCmxu3FrNOzLGpyb7w"} />
+      <RNBambuserBroadcaster ref={ref => {this.myBroadcasterRef = ref; }} style={{height: 300,backgroundColor : "red"}} applicationId={"L5OLXCmxu3FrNOzLGpyb7w"} />
       <Button onPress={()=>{ this.myBroadcasterRef.startBroadcast();} } title={"Start"}/>
       <Button onPress={()=>{ this.myBroadcasterRef.stopBroadcast();
       this.myBroadcasterRef.endTalkback();
@@ -52,8 +52,8 @@ class App extends React.Component {
       <RNBambuserPlayer  
       ref={ref => {this.RNBambuserPlayer = ref; }} 
       videoScaleMode={RNBambuserPlayer.VIDEO_SCALE_MODE.ASPECT_FILL}
-     resourceUri={"https://cdn.bambuser.net/broadcasts/ffb8d766-9dca-44a2-b744-e022d771aefe?da_signature_method=HMAC-SHA256&da_id=9e1b1e83-657d-7c83-b8e7-0b782ac9543a&da_timestamp=1580801783&da_static=1&da_ttl=0&da_signature=55f582eef740ca5aa704f8a82d01498b2e31cffe1501741d44bfdcbb2ed34d5c"} 
-      style={{height: 200,width: 500,backgroundColor : "red"}} applicationId={"L5OLXCmxu3FrNOzLGpyb7w"} 
+     resourceUri={"https://cdn.bambuser.net/broadcasts/fd309914-2e78-454d-b343-9c67a403b8f8?da_signature_method=HMAC-SHA256&da_id=9e1b1e83-657d-7c83-b8e7-0b782ac9543a&da_timestamp=1580811703&da_static=1&da_ttl=0&da_signature=dc0ac046486bfac50f4decd959b2786c15a9a99b5b00e593646e4c89d0ffae33"} 
+      style={{height: 300,width: 500,backgroundColor : "red"}} applicationId={"L5OLXCmxu3FrNOzLGpyb7w"} 
 
       onReady={()=>{
         // alert("ready")
@@ -63,50 +63,6 @@ class App extends React.Component {
       onStopped={()=>{alert("32123132")}}
       onPlaybackError={()=>{alert("errrorororo")}}
       />
-        {/* <StatusBar barStyle="dark-content" />
-        <SafeAreaView>
-        <View style={{height : 100, backgroundColor : "red"}}>
-  <RNBambuserBroadcaster applicationId={"L5OLXCmxu3FrNOzLGpyb7w"} />
-  </View> */}
-          {/* <ScrollView
-            contentInsetAdjustmentBehavior="automatic"
-            style={styles.scrollView}>
-  
-            {global.HermesInternal == null ? null : (
-              <View style={styles.engine}>
-                <Text style={styles.footer}>Engine: Hermes</Text>
-              </View>
-            )}
-            <View style={styles.body}>
-              <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>Step One</Text>
-                <Text style={styles.sectionDescription}>
-                  Edit <Text style={styles.highlight}>App.js</Text> to change this
-                  screen and then come back to see your edits.
-                </Text>
-              </View>
-              <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>See Your Changes</Text>
-                <Text style={styles.sectionDescription}>
-                  <ReloadInstructions />
-                </Text>
-              </View>
-              <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>Debug</Text>
-                <Text style={styles.sectionDescription}>
-                  <DebugInstructions />
-                </Text>
-              </View>
-              <View style={styles.sectionContainer}>
-                <Text style={styles.sectionTitle}>Learn More</Text>
-                <Text style={styles.sectionDescription}>
-                  Read the docs to discover what to do next:
-                </Text>
-              </View>
-              <LearnMoreLinks />
-            </View>
-          </ScrollView> */}
-        {/* </SafeAreaView> */}
         </View>
     );
   }
